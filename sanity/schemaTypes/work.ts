@@ -58,13 +58,13 @@ export const workType = defineType({
             of: [{ type: 'string' }],
             hidden: ({ document }) => document?.workType !== 'project',
         }),
-        // 视频专用字段
+        // 封面图（项目和视频都可以上传）
         defineField({
             name: 'cover',
-            title: '视频封面',
+            title: '封面图',
             type: 'image',
+            description: '项目截图或视频封面，建议16:9比例',
             options: { hotspot: true },
-            hidden: ({ document }) => document?.workType !== 'video',
         }),
         defineField({
             name: 'platforms',

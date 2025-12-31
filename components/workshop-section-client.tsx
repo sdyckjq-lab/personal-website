@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { ExternalLink, Sparkles, Play } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import type { WorkItem, ProjectWork, VideoWork } from "@/lib/works"
 
@@ -18,8 +17,7 @@ interface WorkshopSectionClientProps {
 export function WorkshopSectionClient({ works }: WorkshopSectionClientProps) {
     const [selectedType, setSelectedType] = useState<WorkType>("全部")
 
-    // 调试：打印收到的数据
-    console.log("Works received in client:", works)
+
 
     const filteredItems = selectedType === "全部"
         ? works
@@ -73,67 +71,74 @@ export function WorkshopSectionClient({ works }: WorkshopSectionClientProps) {
 
 // 项目卡片组件
 function ProjectCard({ project }: { project: ProjectWork }) {
+    const CardWrapper = project.status === "已上线" ? "a" : "div"
+    const wrapperProps = project.status === "已上线" ? {
+        href: project.link,
+        target: "_blank",
+        rel: "noopener noreferrer",
+    } : {}
+
     return (
-        <Card className="p-6 bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group">
-            <div className="space-y-4">
-                <div className="flex items-start justify-between">
+        <CardWrapper {...wrapperProps} className="block">
+            <Card className="overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group cursor-pointer">
+                {/* 封面图 */}
+                <div className="relative aspect-video bg-muted">
+                    {project.cover ? (
+                        <Image
+                            src={project.cover}
+                            alt={project.title}
+                            fill
+                            className="object-cover"
+                        />
+                    ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                            <span className="text-4xl">🛠️</span>
+                        </div>
+                    )}
+                    {/* 状态标签 */}
+                    <div className="absolute top-3 right-3">
+                        <span
+                            className={`text-xs px-2 py-1 rounded-full whitespace-nowrap ${project.status === "已上线"
+                                ? "bg-green-500 text-white"
+                                : project.status === "开发中"
+                                    ? "bg-blue-500 text-white"
+                                    : "bg-gray-500 text-white"
+                                }`}
+                        >
+                            {project.status}
+                        </span>
+                    </div>
+                </div>
+
+                {/* 项目信息 */}
+                <div className="p-6 space-y-3">
                     <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                         {project.title}
                     </h3>
-                    <span
-                        className={`text-xs px-2 py-1 rounded-full ${project.status === "已上线"
-                            ? "bg-green-100 text-green-700"
-                            : project.status === "开发中"
-                                ? "bg-blue-100 text-blue-700"
-                                : "bg-gray-100 text-gray-600"
-                            }`}
-                    >
-                        {project.status}
-                    </span>
-                </div>
 
-                <p className="text-muted-foreground text-sm leading-relaxed">{project.description}</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                        {project.description}
+                    </p>
 
-                <div className="flex flex-wrap gap-2">
-                    {project.tags?.map((tag, i) => (
-                        <span
-                            key={i}
-                            className="text-xs px-3 py-1 bg-muted/50 text-muted-foreground rounded-full border border-border"
-                        >
-                            {tag}
-                        </span>
-                    ))}
-                </div>
+                    {/* 技术标签 */}
+                    <div className="flex flex-wrap gap-2">
+                        {project.tags?.map((tag, i) => (
+                            <span
+                                key={i}
+                                className="text-xs px-3 py-1 bg-muted/50 text-muted-foreground rounded-full border border-border"
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
 
-                {project.status === "已上线" ? (
-                    <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full"
-                    >
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            className="w-full justify-center gap-2 text-primary hover:text-primary hover:bg-primary/10"
-                        >
-                            查看详情
-                            <ExternalLink className="w-4 h-4" />
-                        </Button>
-                    </a>
-                ) : (
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        className="w-full justify-center gap-2 text-primary hover:text-primary hover:bg-primary/10"
-                        disabled
-                    >
-                        查看详情
+                    <div className="flex items-center gap-2 text-primary text-sm font-medium pt-2">
+                        {project.status === "已上线" ? "查看详情" : "敬请期待"}
                         <ExternalLink className="w-4 h-4" />
-                    </Button>
-                )}
-            </div>
-        </Card>
+                    </div>
+                </div>
+            </Card>
+        </CardWrapper>
     )
 }
 

@@ -10,6 +10,7 @@ export interface ProjectWork {
     link: string
     status: "已上线" | "开发中" | "规划中"
     tags: string[]
+    cover?: string
     order: number
 }
 
@@ -70,17 +71,13 @@ export async function getWorks(): Promise<WorkItem[]> {
             order
         }`
 
-        console.log("Fetching works from Sanity...")
         const works = await client.fetch<WorkItem[]>(query)
-        console.log("Works fetched:", JSON.stringify(works, null, 2))
 
         // 如果 Sanity 有数据则使用，否则返回默认数据
         if (works && works.length > 0) {
-            console.log("Using Sanity data, count:", works.length)
             return works
         }
 
-        console.log("No Sanity data, using defaults")
         return defaultWorks
     } catch (error) {
         console.error("Failed to fetch works from Sanity:", error)
