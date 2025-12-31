@@ -18,6 +18,9 @@ interface WorkshopSectionClientProps {
 export function WorkshopSectionClient({ works }: WorkshopSectionClientProps) {
     const [selectedType, setSelectedType] = useState<WorkType>("全部")
 
+    // 调试：打印收到的数据
+    console.log("Works received in client:", works)
+
     const filteredItems = selectedType === "全部"
         ? works
         : works.filter(item =>
