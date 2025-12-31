@@ -1,30 +1,8 @@
 import { client } from "@/sanity/lib/client"
-import imageUrlBuilder from "@sanity/image-url"
+import type { ProjectWork, VideoWork, WorkItem } from "@/types"
 
-const builder = imageUrlBuilder(client)
-
-export interface ProjectWork {
-    type: "project"
-    title: string
-    description: string
-    link: string
-    status: "已上线" | "开发中" | "规划中"
-    tags: string[]
-    cover?: string
-    order: number
-}
-
-export interface VideoWork {
-    type: "video"
-    title: string
-    description: string
-    link: string
-    cover: string
-    platforms: string[]
-    order: number
-}
-
-export type WorkItem = ProjectWork | VideoWork
+// 重新导出类型供其他模块使用
+export type { ProjectWork, VideoWork, WorkItem } from "@/types"
 
 // 默认作品数据（作为后备）
 const defaultWorks: WorkItem[] = [

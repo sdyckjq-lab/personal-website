@@ -1,15 +1,8 @@
 import { client } from "@/sanity/lib/client"
-import type { PortableTextBlock } from "@portabletext/types"
+import type { Article } from "@/types"
 
-export interface Article {
-    title: string
-    slug?: string
-    date: string
-    category: string
-    tags: string[]
-    excerpt: string
-    body?: PortableTextBlock[]
-}
+// 重新导出类型供其他模块使用
+export type { Article } from "@/types"
 
 // 默认文章数据（作为后备）
 const defaultArticles: Article[] = [
