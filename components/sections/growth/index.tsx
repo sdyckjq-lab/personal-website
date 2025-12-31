@@ -1,5 +1,5 @@
 import { getArticles } from "@/lib/articles"
-import { GrowthSectionClient } from "./growth-section-client"
+import { GrowthSectionClient } from "./GrowthClient"
 
 export async function GrowthSection() {
   const articles = await getArticles()

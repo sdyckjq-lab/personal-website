@@ -1,9 +1,9 @@
-import { Navigation } from "@/components/navigation"
-import { HeroSection } from "@/components/hero-section"
-import { WorkshopSection } from "@/components/workshop-section"
-import { GrowthSection } from "@/components/growth-section"
-import { AboutSection } from "@/components/about-section"
-import { Footer } from "@/components/footer"
+import { Navigation } from "@/components/layout/Navigation"
+import { HeroSection } from "@/components/sections/HeroSection"
+import { WorkshopSection } from "@/components/sections/workshop"
+import { GrowthSection } from "@/components/sections/growth"
+import { AboutSection } from "@/components/sections/AboutSection"
+import { Footer } from "@/components/layout/Footer"
 
 export default function Home() {
   return (
