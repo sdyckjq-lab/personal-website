@@ -79,8 +79,8 @@ function ProjectCard({ project }: { project: ProjectWork }) {
     } : {}
 
     return (
-        <CardWrapper {...wrapperProps} className="block">
-            <Card className="overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group cursor-pointer">
+        <CardWrapper {...wrapperProps} className="block h-full">
+            <Card className="h-full flex flex-col overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group cursor-pointer">
                 {/* 封面图 */}
                 <div className="relative aspect-video bg-muted">
                     {project.cover ? (
@@ -111,17 +111,17 @@ function ProjectCard({ project }: { project: ProjectWork }) {
                 </div>
 
                 {/* 项目信息 */}
-                <div className="p-6 space-y-3">
+                <div className="p-6 flex flex-col flex-grow">
                     <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                         {project.title}
                     </h3>
 
-                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mt-3">
                         {project.description}
                     </p>
 
                     {/* 技术标签 */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mt-3">
                         {project.tags?.map((tag, i) => (
                             <span
                                 key={i}
@@ -132,7 +132,7 @@ function ProjectCard({ project }: { project: ProjectWork }) {
                         ))}
                     </div>
 
-                    <div className="flex items-center gap-2 text-primary text-sm font-medium pt-2">
+                    <div className="flex items-center gap-2 text-primary text-sm font-medium mt-auto pt-4">
                         {project.status === "已上线" ? "查看详情" : "敬请期待"}
                         <ExternalLink className="w-4 h-4" />
                     </div>
@@ -149,9 +149,9 @@ function VideoCard({ video }: { video: VideoWork }) {
             href={video.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="block"
+            className="block h-full"
         >
-            <Card className="overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group cursor-pointer">
+            <Card className="h-full flex flex-col overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg group cursor-pointer">
                 {/* 视频封面 */}
                 <div className="relative aspect-video bg-muted">
                     {video.cover ? (
@@ -173,17 +173,17 @@ function VideoCard({ video }: { video: VideoWork }) {
                 </div>
 
                 {/* 视频信息 */}
-                <div className="p-6 space-y-3">
+                <div className="p-6 flex flex-col flex-grow">
                     <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                         {video.title}
                     </h3>
 
-                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mt-3">
                         {video.description}
                     </p>
 
                     {/* 平台标签 */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 mt-3">
                         {video.platforms?.map((p, i) => (
                             <span
                                 key={i}
@@ -194,7 +194,7 @@ function VideoCard({ video }: { video: VideoWork }) {
                         ))}
                     </div>
 
-                    <div className="flex items-center gap-2 text-primary text-sm font-medium pt-2">
+                    <div className="flex items-center gap-2 text-primary text-sm font-medium mt-auto pt-4">
                         点击观看
                         <ExternalLink className="w-4 h-4" />
                     </div>
