@@ -1,11 +1,9 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { ThemeProvider } from "@/components/providers/ThemeProvider"
+import { ParticlesBackground } from "@/components/ui/particles-background"
 import "./globals.css"
-
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "AI Journey - 36岁的代码与AI学习之旅",
@@ -39,8 +37,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <body className={`font-sans antialiased`}>
-        {children}
+      <body className={`font-sans antialiased bg-background text-foreground`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <ParticlesBackground />
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

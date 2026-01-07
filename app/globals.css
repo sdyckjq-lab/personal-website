@@ -3,60 +3,84 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ============================================
+   赛博朋克 Neo-Tech 配色方案
+   轻度赛博朋克 - 深色底 + 青色/品红高亮
+   ============================================ */
+
 :root {
-  /* 使用用户指定的极简配色方案 */
+  /* 赛博朋克深色主题 (默认) */
+  --background: #0a0a0f;
+  --foreground: #e4e4e7;
+  
+  /* 卡片 */
+  --card: #12121a;
+  --card-foreground: #e4e4e7;
+  
+  /* 主色调 - 青色霓虹 */
+  --primary: #00d9ff;
+  --primary-foreground: #0a0a0f;
+  
+  /* 强调色 - 品红霓虹 */
+  --accent: #ff00aa;
+  --accent-foreground: #0a0a0f;
+  
+  /* 次要色 */
+  --secondary: #1a1a2e;
+  --secondary-foreground: #e4e4e7;
+  
+  /* 静音色 */
+  --muted: #27273a;
+  --muted-foreground: #a1a1aa;
+  
+  /* 边框 */
+  --border: #27273a;
+  --input: #1a1a2e;
+  --ring: #00d9ff;
+  
+  /* 破坏性操作 */
+  --destructive: #ff3366;
+  --destructive-foreground: #ffffff;
+  
+  /* 弹出层 */
+  --popover: #12121a;
+  --popover-foreground: #e4e4e7;
+  
+  /* 圆角 */
+  --radius: 0.5rem;
+  
+  /* 赛博朋克特殊变量 */
+  --neon-cyan: #00d9ff;
+  --neon-magenta: #ff00aa;
+  --neon-purple: #8b5cf6;
+  --neon-green: #00ff88;
+  --glow-cyan: 0 0 20px rgba(0, 217, 255, 0.5);
+  --glow-magenta: 0 0 20px rgba(255, 0, 170, 0.5);
+  --glow-purple: 0 0 20px rgba(139, 92, 246, 0.5);
+  
+  /* 渐变背景 */
+  --gradient-cyber: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+  --gradient-neon: linear-gradient(90deg, #00d9ff 0%, #ff00aa 100%);
+}
+
+/* 浅色模式 (可选，保留兼容性) */
+.light {
   --background: #f5f5f5;
   --foreground: #1f2937;
   --card: #ffffff;
   --card-foreground: #1f2937;
-  --primary: #1e40af;
+  --primary: #0891b2;
   --primary-foreground: #ffffff;
   --muted: #9ca3af;
   --muted-foreground: #6b7280;
   --border: #e5e7eb;
-  --accent: #1e40af;
+  --accent: #d946ef;
   --accent-foreground: #ffffff;
-  --radius: 0.5rem;
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
 }
 
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -70,29 +94,165 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
   * {
     @apply border-border;
   }
+  
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-cyber);
+    min-height: 100vh;
   }
 
   /* 平滑滚动效果 */
   html {
     scroll-behavior: smooth;
+  }
+  
+  /* 选中文本颜色 */
+  ::selection {
+    background: var(--neon-cyan);
+    color: var(--background);
+  }
+}
+
+@layer components {
+  /* 霓虹发光边框 */
+  .neon-border {
+    border: 1px solid var(--neon-cyan);
+    box-shadow: var(--glow-cyan), inset 0 0 20px rgba(0, 217, 255, 0.1);
+  }
+  
+  .neon-border-magenta {
+    border: 1px solid var(--neon-magenta);
+    box-shadow: var(--glow-magenta), inset 0 0 20px rgba(255, 0, 170, 0.1);
+  }
+  
+  /* 霓虹文字 */
+  .neon-text {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+  }
+  
+  .neon-text-magenta {
+    color: var(--neon-magenta);
+    text-shadow: 0 0 10px var(--neon-magenta), 0 0 20px var(--neon-magenta);
+  }
+  
+  /* 霓虹按钮 */
+  .neon-button {
+    @apply relative overflow-hidden transition-all duration-300;
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+  }
+  
+  .neon-button:hover {
+    background: var(--neon-cyan);
+    color: var(--background);
+    box-shadow: var(--glow-cyan);
+  }
+  
+  /* 赛博朋克卡片 */
+  .cyber-card {
+    @apply relative overflow-hidden transition-all duration-300;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+  
+  .cyber-card:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: var(--glow-cyan);
+    transform: translateY(-4px);
+  }
+  
+  /* 扫描线效果 (可选，用于hover) */
+  .scanline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 50%,
+      rgba(0, 0, 0, 0.05) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .scanline:hover::after {
+    opacity: 1;
+  }
+  
+  /* 渐变文字 */
+  .gradient-text {
+    background: var(--gradient-neon);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* 脉冲动画 */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan);
+    }
+    50% {
+      box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+    }
+  }
+  
+  /* 故障效果 (轻微) */
+  .glitch {
+    animation: glitch 3s infinite;
+  }
+  
+  @keyframes glitch {
+    0%, 90%, 100% {
+      transform: translate(0);
+    }
+    92% {
+      transform: translate(-2px, 1px);
+    }
+    94% {
+      transform: translate(2px, -1px);
+    }
+    96% {
+      transform: translate(-1px, 2px);
+    }
+    98% {
+      transform: translate(1px, -2px);
+    }
+  }
+}
+
+/* 减少动效偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
   }
 }

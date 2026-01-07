@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
+    // For static export compatibility; enable optimization when using Vercel
     unoptimized: true,
   },
 }

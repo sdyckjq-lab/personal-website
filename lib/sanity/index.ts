@@ -3,4 +3,10 @@
  */
 
 export { client, sanityFetch, sanityFetchList } from "./client"
-export { articleQueries, workQueries } from "./queries"
+export { 
+    articleQueries, 
+    workQueries,
+    siteSettingsQueries,
+    aboutContentQueries,
+    navigationQueries,
+} from "./queries"

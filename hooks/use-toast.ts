@@ -1,19 +1,18 @@
 'use client'
 
-// Inspired by react-hot-toast library
+// Simplified toast hook - toast UI component not used in this project
 import * as React from 'react'
 
-import type { ToastActionElement, ToastProps } from '@/components/ui/toast'
-
-const TOAST_LIMIT = 1
-const TOAST_REMOVE_DELAY = 1000000
-
-type ToasterToast = ToastProps & {
+interface ToasterToast {
   id: string
   title?: React.ReactNode
   description?: React.ReactNode
-  action?: ToastActionElement
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
 }
+
+const TOAST_LIMIT = 1
+const TOAST_REMOVE_DELAY = 1000000
 
 const actionTypes = {
   ADD_TOAST: 'ADD_TOAST',
@@ -90,8 +89,6 @@ export const reducer = (state: State, action: Action): State => {
     case 'DISMISS_TOAST': {
       const { toastId } = action
 
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
       if (toastId) {
         addToRemoveQueue(toastId)
       } else {
@@ -155,7 +152,7 @@ function toast({ ...props }: Toast) {
       ...props,
       id,
       open: true,
-      onOpenChange: (open) => {
+      onOpenChange: (open: boolean) => {
         if (!open) dismiss()
       },
     },

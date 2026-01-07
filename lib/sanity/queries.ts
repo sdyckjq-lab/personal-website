@@ -42,3 +42,46 @@ export const workQueries = {
         order
     }`,
 }
+
+// 站点设置查询（单例）
+export const siteSettingsQueries = {
+    get: `*[_type == "siteSettings"][0] {
+        heroTitle,
+        heroHighlight,
+        heroDescription,
+        ctaPrimaryText,
+        ctaPrimaryTarget,
+        ctaSecondaryText,
+        ctaSecondaryTarget
+    }`,
+}
+
+// 关于我内容查询（单例）
+export const aboutContentQueries = {
+    get: `*[_type == "aboutContent"][0] {
+        sectionTitle,
+        sectionSubtitle,
+        introParagraphs[] {
+            text,
+            isHighlight
+        },
+        techStack,
+        socialLinks[] {
+            platform,
+            url,
+            label
+        }
+    }`,
+}
+
+// 导航配置查询（单例）
+export const navigationQueries = {
+    get: `*[_type == "navigation"][0] {
+        siteName,
+        menuItems[] {
+            label,
+            target,
+            isExternal
+        }
+    }`,
+}
